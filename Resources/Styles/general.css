@@ -1,0 +1,165 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(45deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Encabezados */
+h1 {
+    font-size: 24px;
+    color: #FFD700;
+}
+
+description {
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.8;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+}
+
+description h2 {
+    color: #FFD700;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+/* Bloques de curiosidades */
+.curiosity {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 5px solid #FFD700;
+    text-align: left;
+}
+
+/* Calificación */
+.rating {
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    border: 3px solid #FFD700;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0px 0px 10px rgba(255, 215, 0, 0.5);
+}
+
+.rating h2 {
+    color: #FFD700;
+    font-size: 18px;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.star {
+    width: 30px;
+    height: 30px;
+}
+
+.half-star {
+    width: 15px;
+    height: 30px;
+    overflow: hidden;
+}
+
+/* Galería */
+.gallery img {
+    height: 760px !important;
+    max-height: 760px;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal-content {
+    background: rgba(0, 0, 0, 0.9);
+    border: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    margin: auto;
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+.modal-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-body img {
+    max-width: 200%;
+    max-height: 200%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+}
+
+.modal-content button {
+    margin: 2rem;
+}
+
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: none;
+    width: auto;
+}
+
+/* Botones de navegación del carrusel */
+.button-slider-container {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 37%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    margin: 2rem;
+    border-radius: 999px;
+}
