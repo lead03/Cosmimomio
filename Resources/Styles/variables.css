@@ -1,0 +1,45 @@
+/* Variables Stylesheet */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Color Palette - Gaming Inspired */
+:root {
+    --primary-color: #ff4b2b;
+    --secondary-color: #ff416c;
+    --tertiary-color: #1b1b2f;
+    --gold-color: #ffd700;
+    --text-color: #f0f0f0;
+    --transparent-bg-color: rgba(30, 30, 30, 0.85);
+    --non-transparent-bg-color: rgb(30, 30, 30);
+    --highlight-bg-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.6);
+    --gold-shadow-color: rgba(255, 223, 0, 0.6);
+    --description-bg: rgba(27, 27, 47, 0.85);
+    --carousel-button-bg: rgba(50, 50, 70, 0.7);
+    --line-height-standard: 1.8;
+}
+
+/* Typography */
+:root {
+    --primary-font: 'Press Start 2P', cursive;
+    --secondary-font: 'Roboto', sans-serif;
+}
+
+/* Font Sizes */
+:root {
+    --h1-size: 2rem;
+    --h2-size: 1.25rem;
+    --paragraph-size: 18px;
+    --icon-size: 30px;
+    --h1-padding: 2rem;
+    --h2-margin: 1.25rem;
+}
+
+/* Spacing & Borders */
+:root {
+    --border-radius: 10px;
+    --spacing: 20px;
+    --standard-shadow: 0px 0px 15px var(--shadow-color);
+}
