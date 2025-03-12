@@ -354,6 +354,10 @@
                 modalImage.style.height = 'auto';
             });
         });
+
+        document.getElementById('imageModal').addEventListener('hidden.bs.modal', function () {
+            document.activeElement.blur();
+        });
     </script>
 </body>
 
