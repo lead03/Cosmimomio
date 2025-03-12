@@ -101,6 +101,22 @@ h2 {
     overflow: hidden;
 }
 
+.final-score-title {
+    color: var(--highlight-color);
+}
+
+.stars.final-score {
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+    transform-origin: center;
+    flex-direction: column;
+}
+
+.stars.final-score>* {
+    transform: scale(1.15);
+}
+
 /* Gallery */
 .gallery {
     margin-top: var(--spacing);
@@ -194,7 +210,7 @@ h2 {
 
 .curiosities h2 {
     color: var(--highlight-color);
-}	
+}
 
 .curiosity {
     margin-top: var(--spacing);
@@ -211,4 +227,4 @@ h2 {
     margin-top: 1rem;
     color: var(--highlight-color);
     font-size: 0.9rem;
-}	
+}
