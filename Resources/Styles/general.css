@@ -136,6 +136,11 @@ h2 {
     cursor: pointer;
 }
 
+figcaption {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}	
+
 .gallery img:hover {
     transform: scale(1.05);
 }
