@@ -6,28 +6,21 @@
 
 /* Color Palette - Gaming Inspired */
 :root {
-    --primary-color: #54619f;
-    --secondary-color: #ff416c;
-    --tertiary-color: #1b1b2f;
-    
-    --title-color: #ffcc00;
+    --primary-color: #240046;
+    --secondary-color: #ff0054;
+    --tertiary-color: #00072d;
+    --title-color: #ffbe0b;
     --text-color: #e0e0e0;
-    --title-shadow-color: rgba(255, 223, 0, 0.6);
-    
-    --transparent-bg-color: rgba(30, 30, 30, 0.85);
-    
-    --card-background: rgba(40, 40, 60, 0.85);
-    --card-shadow: rgba(0, 0, 0, 0.6);
-    
-    --highlight-color: #00ffcc;
-    --border-highlight: #00ff99;
-    --shadow-highlight: rgba(0, 255, 153, 0.6);
-    --highlight-bg-color: rgba(112, 203, 231, 0.06);
-    
-    --modal-bg-color: rgba(30, 30, 40, 1);
-    --carousel-button-bg: rgba(50, 50, 80, 0.7);
-
-    --line-height-standard: 1.8;
+    --title-shadow-color: rgba(255, 190, 11, 0.6);   
+    --transparent-bg-color: rgba(15, 0, 30, 0.9); 
+    --card-background: rgba(40, 0, 70, 0.95);
+    --card-shadow: rgba(0, 0, 0, 0.8);   
+    --highlight-color: #00f5d4;
+    --border-highlight: #ff477e;
+    --shadow-highlight: rgba(255, 71, 126, 0.6);
+    --highlight-bg-color: rgba(0, 255, 212, 0.1);  
+    --modal-bg-color: rgba(30, 0, 60, 1);
+    --carousel-button-bg: rgba(60, 0, 100, 0.8);
 }
 
 /* Typography */
