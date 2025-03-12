@@ -217,7 +217,7 @@
                         </svg>
                     </div>
                 </div>
-    
+
             </div>
         </div>
         <div class="gallery">
@@ -252,14 +252,14 @@
                 <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel"
                     data-bs-slide="prev">
                     <div class="button-slider-container">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-prev-icon"></span>
                     </div>
 
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel"
                     data-bs-slide="next">
                     <div class="button-slider-container">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-next-icon"></span>
                     </div>
                 </button>
             </div>
@@ -268,39 +268,39 @@
             <h2>Curiosidades</h2>
             <div class="curiosity">
                 <p>
-                    <h3>1. Sin nombres reales:</h3>
-                    A diferencia de las versiones modernas, los jugadores no tenían nombres oficiales debido a la falta
-                    de licencias. Inclusive se usaron nombres en referencia a desarrolladores que participaron de la
-                    producción del juego
+                <h3>1. Sin nombres reales:</h3>
+                A diferencia de las versiones modernas, los jugadores no tenían nombres oficiales debido a la falta
+                de licencias. Inclusive se usaron nombres en referencia a desarrolladores que participaron de la
+                producción del juego
                 </p>
             </div>
             <div class="curiosity">
                 <p>
-                    <h3>2. Bugs divertidos:</h3>
-                    Si el jugador hacía una falta y debía recibir tarjeta, era posible escapar y que el árbitro te
-                    persiguiera.
+                <h3>2. Bugs divertidos:</h3>
+                Si el jugador hacía una falta y debía recibir tarjeta, era posible escapar y que el árbitro te
+                persiguiera.
                 </p>
             </div>
             <div class="curiosity">
                 <p>
-                    <h3>3. Goles con mayor probabilidad:</h3>
-                    Viniendo desde la esquina del área, es más posible marcar un gol que si se está mano a mano con el
-                    arquero. Esto obviamente también dependía de las puntuaciones del arquero.
+                <h3>3. Goles con mayor probabilidad:</h3>
+                Viniendo desde la esquina del área, es más posible marcar un gol que si se está mano a mano con el
+                arquero. Esto obviamente también dependía de las puntuaciones del arquero.
                 </p>
             </div>
             <div class="curiosity">
                 <p>
-                    <h3>4. Código de amistad:</h3>
-                    Con un poco de práctica, en cada saque de arquero con pelota en mano, es posible pararse frente a
-                    este, interceptar la pelota y marcar un gol instantáneo. Si juegas con alguien, mejor aclarar que
-                    ese tipo de goles no es válido.
+                <h3>4. Código de amistad:</h3>
+                Con un poco de práctica, en cada saque de arquero con pelota en mano, es posible pararse frente a
+                este, interceptar la pelota y marcar un gol instantáneo. Si juegas con alguien, mejor aclarar que
+                ese tipo de goles no es válido.
                 </p>
             </div>
             <div class="curiosity">
                 <p>
-                    <h3>5. Cheats:</h3>
-                    Existen códigos y combinaciones de botones que cambian el comportamiento del juego, y hasta pueden
-                    darte goles a favor. Estos trucos pueden ingresarse al inicio del juego o en la sección Password.
+                <h3>5. Cheats:</h3>
+                Existen códigos y combinaciones de botones que cambian el comportamiento del juego, y hasta pueden
+                darte goles a favor. Estos trucos pueden ingresarse al inicio del juego o en la sección Password.
                 </p>
             </div>
         </div>
@@ -320,12 +320,25 @@
             img.addEventListener('click', function () {
                 const modalImage = document.getElementById('modalImage');
                 modalImage.src = this.src;
-                modalImage.style.maxWidth = '80vh';
-                modalImage.style.maxHeight = '80vh';
+
+                // Obtiene el ancho y alto de la pantalla
+                const viewportWidth = window.innerWidth;
+                const viewportHeight = window.innerHeight;
+
+                // Define los tamaños según el dispositivo
+                if (viewportWidth <= 768) {  // Modo móvil
+                    modalImage.style.maxWidth = '85vw';
+                    modalImage.style.maxHeight = '60vh';
+                } else {  // Pantallas más grandes
+                    modalImage.style.maxWidth = '80vw';
+                    modalImage.style.maxHeight = '80vh';
+                }
+
                 modalImage.style.width = 'auto';
                 modalImage.style.height = 'auto';
             });
         });
     </script>
 </body>
+
 </html>
