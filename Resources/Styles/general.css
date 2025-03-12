@@ -23,18 +23,18 @@ body {
     padding: var(--spacing);
     background: var(--transparent-bg-color);
     border-radius: var(--border-radius);
-    box-shadow: 0px 0px 20px var(--shadow-color);
+    box-shadow: 0px 0px 20px var(--card-shadow);
 }
 
 /* Headings */
 h1 {
     font-size: var(--h1-size);
-    color: var(--gold-color);
+    color: var(--title-color);
     font-family: var(--primary-font);
 }
 
 h2 {
-    color: var(--gold-color);
+    color: var(--title-color);
     font-size: var(--h2-size);
     margin: var(--h2-margin);
     text-align: center;
@@ -44,7 +44,7 @@ h2 {
 
 .title-name {
     font-size: var(--h1-size);
-    color: var(--gold-color);
+    color: var(--title-color);
     font-family: var(--primary-font);
     padding: var(--h1-padding);
 }
@@ -53,7 +53,7 @@ h2 {
 .description {
     margin-top: var(--spacing);
     padding: var(--spacing);
-    background: var(--description-bg);
+    background: var(--card-background);
     border-radius: var(--border-radius);
     text-align: left;
     font-family: var(--secondary-font);
@@ -66,18 +66,21 @@ h2 {
     margin-top: 3rem;
 }
 
-
-
 /* Rating */
 .rating {
     margin-top: var(--spacing);
     text-align: center;
     padding: 15px;
-    border: 3px solid var(--gold-color);
+    border: 3px solid var(--title-color);
     border-radius: var(--border-radius);
     background: var(--highlight-bg-color);
-    box-shadow: 0px 0px 10px var(--gold-shadow-color);
+    box-shadow: 0px 0px 10px var(--title-shadow-color);
     font-family: var(--primary-font);
+}
+
+.rating h3 {
+    font-size: 1rem;
+    margin: 1rem 0 0 0;
 }
 
 .stars {
@@ -102,7 +105,7 @@ h2 {
 .gallery {
     margin-top: var(--spacing);
     padding: var(--spacing);
-    background: var(--description-bg);
+    background: var(--card-background);
     border-radius: var(--border-radius);
     box-shadow: var(--standard-shadow);
     height: auto;
@@ -123,11 +126,10 @@ h2 {
 
 /* Modal */
 .modal-content {
-    background: var(--non-transparent-bg-color);
+    background: var(--modal-bg-color);
     color: var(--text-color);
-    box-shadow: var(--standard-shadow);
+    box-shadow: var(--shadow-highlight);
     border-radius: var(--border-radius);
-    border: none;
     text-align: center;
     display: flex;
     align-items: center;
@@ -184,15 +186,14 @@ h2 {
 .curiosities {
     margin-top: var(--spacing);
     padding: var(--spacing);
-    background: var(--secondary-bg-color);
-    box-shadow: var(--standard-shadow);
-    border: 3px solid var(--neon-green-color);
+    background: var(--highlight-bg-color);
+    border: 3px solid var(--border-highlight);
     border-radius: var(--border-radius);
-    box-shadow: 0px 0px 10px var(--neon-green-shadow-color);
+    box-shadow: 0px 0px 10px var(--shadow-highlight);
 }
 
 .curiosities h2 {
-    color: var(--neon-green-color);
+    color: var(--highlight-color);
 }	
 
 .curiosity {
@@ -200,7 +201,7 @@ h2 {
     margin: 20px 0;
     padding: 15px;
     background: var(--highlight-bg-color);
-    border-left: 5px solid var(--neon-green-color);
+    border-left: 5px solid var(--highlight-color);
     text-align: left;
     font-family: var(--primary-font);
     font-size: 0.9rem;
@@ -208,6 +209,6 @@ h2 {
 
 .curiosity h3 {
     margin-top: 1rem;
-    color: var(--neon-green-color);
+    color: var(--highlight-color);
     font-size: 0.9rem;
 }	
