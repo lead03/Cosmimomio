@@ -1,0 +1,80 @@
+/* Variables Stylesheet */
+
+/* Import Google Fonts */
+@font-face {
+    font-family: 'Material Symbols';
+    src: url('../fonts/MaterialSymbolsOutlined-VariableFont_FILL\,GRAD\,opsz\,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('../fonts/PressStart2P-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-VariableFont_wdth\,wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+/* Color Palette - Gaming Inspired */
+:root {
+    --primary-color: #240046;
+    --secondary-color: #ff0054;
+    --tertiary-color: #00072d;
+    --title-color: #ffbe0b;
+    --text-color: #e0e0e0;
+    --title-shadow-color: rgba(255, 190, 11, 0.6);   
+    --transparent-bg-color: rgba(15, 0, 30, 0.9); 
+    --card-background: rgba(40, 0, 70, 0.95);
+    --card-shadow: rgba(0, 0, 0, 0.8);   
+    --highlight-color: #00f5d4;
+    --border-highlight: #ff477e;
+    --shadow-highlight: rgba(255, 71, 126, 0.6);
+    --highlight-bg-color: rgba(0, 255, 212, 0.1);  
+    --modal-bg-color: rgba(30, 0, 60, 1);
+    --carousel-button-bg: rgba(60, 0, 100, 0.8);
+}
+
+/* Typography */
+:root {
+    --primary-font: 'Press Start 2P', cursive;
+    --secondary-font: 'Roboto', sans-serif;
+}
+
+/* Font Sizes */
+:root {
+    --h1-size: 2rem;
+    --h2-size: 1.25rem;
+    --paragraph-size: 1.25rem;
+    --icon-size: 2rem;
+    --h1-padding: 2rem;
+    --h2-margin: 1.25rem;
+}
+
+/* Spacing & Borders */
+:root {
+    --border-radius: 10px;
+    --spacing: 1.5rem;
+    --standard-shadow: 0px 0px 15px var(--shadow-color);
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols', sans-serif;
+    font-size: 24px;
+}
+
+/* Font Variations */
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
