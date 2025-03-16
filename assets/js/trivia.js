@@ -65,13 +65,15 @@ function handleAnswer(event) {
 
     if (isCorrect) {
         score++; // Aumenta el puntaje si es correcta
-        feedback.textContent = "CORRECTO";
+        feedback.textContent = "CORRECTO :D";
         feedback.style.color = "var(--correct-color)";
         selectedOption.classList.add("correct");
+        this.style.opacity = "1"; 
     } else {
-        feedback.textContent = "INCORRECTO";
+        feedback.textContent = "INCORRECTO :(";
         feedback.style.color = "var(--incorrect-color)";
         selectedOption.classList.add("wrong");
+        this.style.opacity = "1"; 
 
         // Resaltar la opción correcta
         document.querySelectorAll(".option").forEach(opt => {
@@ -94,6 +96,32 @@ function handleAnswer(event) {
     nextButton.style.display = "block";
 }
 
+function showFinalScreen() {
+    // Ocultar la pantalla de preguntas
+    document.getElementById("question-screen").style.display = "none";
+
+    // Mostrar la pantalla final con transición
+    const finalScreen = document.getElementById("final-screen");
+    finalScreen.style.display = "flex";
+    setTimeout(() => finalScreen.style.opacity = "1", 100);
+
+    // Mostrar puntaje final y mensaje personalizado
+    const finalMessage = document.getElementById("final-message");
+    const finalScore = document.getElementById("final-score");
+
+    let message = "";
+    if (score === totalQuestions) {
+        message = "¡Increíble! Has acertado todas las preguntas 🎉";
+    } else if (score >= totalQuestions / 2) {
+        message = "¡Bien hecho! Tu conocimiento es sólido 👍";
+    } else {
+        message = "Puedes mejorar. ¡Inténtalo de nuevo! 😃";
+    }
+
+    finalMessage.textContent = message;
+    finalScore.textContent = `Tu puntaje final: ${score}/${totalQuestions}`;
+}
+
 // Evento del botón "CONTINUAR"
 nextButton.addEventListener("click", function () {
     questionIndex++; // Avanzar a la siguiente pregunta
@@ -101,10 +129,10 @@ nextButton.addEventListener("click", function () {
     if (questionIndex < totalQuestions) {
         loadQuestion();
     } else {
-        alert(`¡Juego terminado! Tu puntaje final es ${score}/${totalQuestions}`);
-        nextButton.style.display = "none";
+        showFinalScreen();
     }
 });
+
 
 // Evento para iniciar el juego
 document.getElementById("start-button").addEventListener("click", function () {
@@ -122,5 +150,6 @@ document.getElementById("start-button").addEventListener("click", function () {
 
         // Cargar la primera pregunta
         loadQuestion();
+        
     }, 800);
 });

@@ -223,3 +223,41 @@ body {
     /* Azul más oscuro */
     transform: scale(1.05);
 }
+
+#final-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#final-message {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#final-score {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#share-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: var(--primary-font);
+    border: none;
+    background-color: #28a745; /* Verde atractivo */
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#share-button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
