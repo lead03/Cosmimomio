@@ -297,3 +297,23 @@ function generateRateId(score) {
 
     return rateId;
 }
+
+document.getElementById("start-button").addEventListener("click", function () {
+    let startScreen = document.getElementById("start-screen");
+    let questionScreen = document.getElementById("question-screen");
+    let gameContainer = document.getElementById("game-container");
+
+    // Desaparecer la pantalla de inicio
+    startScreen.classList.add("fade-out");
+
+    // Remover la imagen de fondo después de la animación
+    setTimeout(() => {
+        startScreen.style.display = "none";
+        gameContainer.classList.remove("start-background"); // Quitar imagen de fondo
+        questionScreen.style.display = "block";
+        questionScreen.classList.add("fade-in");
+    }, 800);
+});
+
+// Agregar la imagen de fondo solo en la pantalla inicial
+document.getElementById("game-container").classList.add("start-background");
