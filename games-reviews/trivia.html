@@ -10,6 +10,7 @@
     <style>
     </style>
 </head>
+
 <body>
     <div id="game-container">
         <div id="start-screen">
@@ -38,11 +39,32 @@
             <h2>¡Trivia Finalizada!</h2>
             <p id="final-message"></p>
             <img id="celebration" />
-            <p id="final-score"></p>            
+            <p id="final-score"></p>
+            <div></div>
             <button id="share-button">COMPARTIR RESULTADO</button>
             <button id="restart-button">VOLVER A EMPEZAR</button>
         </div>
     </div>
-<script src="../assets/js/trivia.js"></script>
+
+    <!-- Modal para ingresar el nombre -->
+    <div id="share-modal" class="modal">
+        <div class="modal-content">
+            <h3>Ingresa tu nombre</h3>
+            <input type="text" id="player-name" placeholder="Tu nombre">
+            <div class="button-container">
+                <button id="confirm-share">GENERAR URL</button>
+                <button id="close-modal">CANCELAR</button>
+            </div>
+            <div id="share-container">
+                <p>Comparte el siguiente enlace:</p>
+                <div id="share-link-container">
+                    <input type="text" id="share-link" readonly>
+                    <button id="copy-link-button">COPIAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/trivia.js"></script>
 </body>
+
 </html>

@@ -209,3 +209,78 @@ document.getElementById("restart-button").addEventListener("click", function () 
     document.getElementById("question-screen").style.display = "block";
     loadQuestion();
 });
+
+
+// Modal
+// Obtener elementos del modal
+const shareModal = document.getElementById("share-modal");
+const confirmShare = document.getElementById("confirm-share");
+const closeModal = document.getElementById("close-modal");
+const playerNameInput = document.getElementById("player-name");
+const shareLinkContainer = document.getElementById("share-container");
+const shareLinkInput = document.getElementById("share-link");
+const copyLinkButton = document.getElementById("copy-link-button");
+
+// Abrir el modal al hacer clic en "COMPARTIR RESULTADO"
+document.getElementById("share-button").addEventListener("click", function () {
+    shareModal.style.display = "flex";
+    shareLinkContainer.style.display = "none"; // Ocultar el contenedor del enlace al abrir el modal
+    playerNameInput.value = ""; // Limpiar campo de nombre
+});
+
+// Cerrar modal sin hacer nada
+closeModal.addEventListener("click", function () {
+    shareModal.style.display = "none";
+});
+
+// Generar URL cuando se confirme el nombre
+confirmShare.addEventListener("click", function () {
+    let playerName = playerNameInput.value.trim();
+    if (playerName === "") {
+        alert("Por favor, ingresa tu nombre.");
+        return;
+    }
+
+    let gameId = crypto.randomUUID(); // Genera un UUID para gameId
+    let rateId = generateHexadecimal(10); // Genera un número hexadecimal de 10 dígitos
+
+    let shareUrl = `https://tudominio.com/game?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
+
+    // Mostrar la URL en el input del modal
+    shareLinkInput.value = shareUrl;
+    shareLinkContainer.style.display = "flex"; // Hacer visible el contenedor del enlace
+});
+
+// Copiar el enlace al portapapeles
+// Copiar el enlace al portapapeles y cambiar estilo del botón
+copyLinkButton.addEventListener("click", function () {
+    shareLinkInput.select();
+    shareLinkInput.setSelectionRange(0, 99999); // Para móviles
+    document.execCommand("copy");
+
+    // Cambiar el botón a "¡Copiado!" con animación
+    copyLinkButton.textContent = "¡Copiado!";
+    copyLinkButton.classList.add("copied");
+
+    // Restaurar el botón después de 2 segundos
+    setTimeout(() => {
+        copyLinkButton.textContent = "COPIAR";
+        copyLinkButton.classList.remove("copied");
+    }, 2000);
+});
+
+// Función para generar un número hexadecimal aleatorio de 10 dígitos
+function generateHexadecimal(length) {
+    let hex = "";
+    const chars = "0123456789abcdef";
+    for (let i = 0; i < length; i++) {
+        hex += chars[Math.floor(Math.random() * chars.length)];
+    }
+    return hex;
+}
+
+shareModal.addEventListener("click", function (event) {
+    if (event.target === shareModal) {
+        shareModal.style.display = "none";
+    }
+});
