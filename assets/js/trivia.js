@@ -1,10 +1,8 @@
 let score = 0;
 let questionIndex = 0;
-const totalQuestions = 2; // Aumentará al agregar más preguntas
-
 const questions = [
     {
-        question: "¿Cuál es el mejor jugador de FIFA International Soccer?",
+        question: "1. ¿Cuál es el mejor jugador de FIFA International Soccer?",
         options: [
             { text: "a. Nombre A", correct: false },
             { text: "b. Nombre B", correct: true },
@@ -12,15 +10,40 @@ const questions = [
         ]
     },
     {
-        question: "¿Cuál es la peor selección del juego?",
+        question: "2. ¿Cuál es la peor selección del juego?",
         options: [
             { text: "a. Equipo A", correct: false },
             { text: "b. Equipo B", correct: false },
             { text: "c. Equipo C", correct: true }
         ]
+    },
+    {
+        question: "3. Pregunta 3?",
+        options: [
+            { text: "a. Nombre A", correct: false },
+            { text: "b. Nombre B", correct: true },
+            { text: "c. Nombre C", correct: false }
+        ]
+    },
+    {
+        question: "4. Pregunta 4?",
+        options: [
+            { text: "a. Nombre A", correct: false },
+            { text: "b. Nombre B", correct: true },
+            { text: "c. Nombre C", correct: false }
+        ]
+    },
+    {
+        question: "5. Pregunta 5?",
+        options: [
+            { text: "a. Nombre A", correct: false },
+            { text: "b. Nombre B", correct: false },
+            { text: "c. Nombre C", correct: true }
+        ]
     }
 ];
 
+const totalQuestions = questions.length;
 const scoreText = document.getElementById("score-text");
 const progressFill = document.getElementById("progress-fill");
 const nextButton = document.getElementById("next-button");
@@ -30,16 +53,10 @@ const feedback = document.getElementById("feedback");
 
 // Función para cargar una pregunta según el índice actual
 function loadQuestion() {
-    feedback.style.opacity = "0"; // Ocultar feedback de la pregunta anterior
-    nextButton.style.display = "none"; // Ocultar botón continuar
-
-    // Limpiar opciones anteriores
+    feedback.style.opacity = "0";
+    nextButton.style.display = "none";
     optionContainer.innerHTML = "";
-
-    // Cargar la nueva pregunta
     questionTitle.textContent = questions[questionIndex].question;
-
-    // Generar opciones
     questions[questionIndex].options.forEach((option, i) => {
         const div = document.createElement("div");
         div.classList.add("option");
@@ -68,12 +85,12 @@ function handleAnswer(event) {
         feedback.textContent = "CORRECTO :D";
         feedback.style.color = "var(--correct-color)";
         selectedOption.classList.add("correct");
-        this.style.opacity = "1"; 
+        this.style.opacity = "1";
     } else {
         feedback.textContent = "INCORRECTO :(";
         feedback.style.color = "var(--incorrect-color)";
         selectedOption.classList.add("wrong");
-        this.style.opacity = "1"; 
+        this.style.opacity = "1";
 
         // Resaltar la opción correcta
         document.querySelectorAll(".option").forEach(opt => {
@@ -105,20 +122,45 @@ function showFinalScreen() {
     finalScreen.style.display = "flex";
     setTimeout(() => finalScreen.style.opacity = "1", 100);
 
-    // Mostrar puntaje final y mensaje personalizado
-    const finalMessage = document.getElementById("final-message");
     const finalScore = document.getElementById("final-score");
 
     let message = "";
-    if (score === totalQuestions) {
-        message = "¡Increíble! Has acertado todas las preguntas 🎉";
-    } else if (score >= totalQuestions / 2) {
-        message = "¡Bien hecho! Tu conocimiento es sólido 👍";
-    } else {
-        message = "Puedes mejorar. ¡Inténtalo de nuevo! 😃";
+    let celebrationImg = document.getElementById("celebration"); // Obtener la imagen
+
+    // Definir la imagen según el puntaje obtenido
+    switch (score) {
+        case 5:
+            message = "¡Increíble! Has acertado todas las preguntas";
+            celebrationImg.src = "../assets/gif/trivia-5stars.gif";
+            celebrationImg.style.display = "block";
+            break;
+        case 4:
+            message = "¡Muy bien! Estuviste a un paso de la perfección";
+            celebrationImg.src = "../assets/gif/trivia-4stars.gif";
+            celebrationImg.style.display = "block";
+            break;
+        case 3:
+            message = "¡Bien! Aún puedes mejorar";
+            celebrationImg.src = "../assets/gif/trivia-3stars.gif";
+            celebrationImg.style.display = "block";
+            break;
+        case 2:
+            message = "¡Casi! Sigue practicando para mejorar";
+            celebrationImg.src = "../assets/gif/trivia-2stars.gif";
+            celebrationImg.style.display = "block";
+            break;
+        case 1:
+            message = "¡Sigue intentándolo! Puedes hacerlo mejor";
+            celebrationImg.src = "../assets/gif/trivia-1stars.gif";
+            celebrationImg.style.display = "block";
+            break;
+        default:
+            message = "Puedes mejorar. ¡Inténtalo de nuevo!";
+            celebrationImg.src = "../assets/gif/trivia-0stars.gif";
+            celebrationImg.style.display = "block";
     }
 
-    finalMessage.textContent = message;
+    document.getElementById("final-message").textContent = message;
     finalScore.textContent = `Tu puntaje final: ${score}/${totalQuestions}`;
 }
 
@@ -150,6 +192,20 @@ document.getElementById("start-button").addEventListener("click", function () {
 
         // Cargar la primera pregunta
         loadQuestion();
-        
+
     }, 800);
+});
+
+document.getElementById("restart-button").addEventListener("click", function () {
+    score = 0;
+    questionIndex = 0;
+
+    // Reiniciar puntaje en la pantalla
+    scoreText.textContent = `Puntaje: 0/${totalQuestions}`;
+    progressFill.style.width = "0%";
+
+    // Ocultar pantalla final y mostrar la primera pregunta
+    document.getElementById("final-screen").style.display = "none";
+    document.getElementById("question-screen").style.display = "block";
+    loadQuestion();
 });
