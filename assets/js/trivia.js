@@ -238,7 +238,11 @@ closeModal.addEventListener("click", function () {
 confirmShare.addEventListener("click", function () {
     let playerName = playerNameInput.value.trim();
     if (playerName === "") {
-        alert("Por favor, ingresa tu nombre.");
+        playerNameInput.classList.add("input-error");
+        shareLinkContainer.style.display = "none";
+        setTimeout(() => {
+            playerNameInput.classList.remove("input-error");
+        }, 600);
         return;
     }
 
