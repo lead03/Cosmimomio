@@ -220,6 +220,7 @@ const playerNameInput = document.getElementById("player-name");
 const shareLinkContainer = document.getElementById("share-container");
 const shareLinkInput = document.getElementById("share-link");
 const copyLinkButton = document.getElementById("copy-link-button");
+const gameId = document.getElementById("gameId");
 
 // Abrir el modal al hacer clic en "COMPARTIR RESULTADO"
 document.getElementById("share-button").addEventListener("click", function () {
@@ -241,8 +242,7 @@ confirmShare.addEventListener("click", function () {
         return;
     }
 
-    let gameId = crypto.randomUUID(); // Genera un UUID para gameId
-    let rateId = generateHexadecimal(10); // Genera un número hexadecimal de 10 dígitos
+    let rateId = generateRateId(score); // Genera un número hexadecimal de 10 dígitos
 
     let shareUrl = `https://tudominio.com/game?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
 
@@ -269,18 +269,27 @@ copyLinkButton.addEventListener("click", function () {
     }, 2000);
 });
 
-// Función para generar un número hexadecimal aleatorio de 10 dígitos
-function generateHexadecimal(length) {
-    let hex = "";
-    const chars = "0123456789abcdef";
-    for (let i = 0; i < length; i++) {
-        hex += chars[Math.floor(Math.random() * chars.length)];
-    }
-    return hex;
-}
+const MULTIPLIERS = [5, 7, 11, 13, 17, 19];
+const OFFSET = 16; // Desplazamiento constante
 
-shareModal.addEventListener("click", function (event) {
-    if (event.target === shareModal) {
-        shareModal.style.display = "none";
+// Función para generar un número hexadecimal aleatorio de 10 dígitos a partir de un puntaje
+function generateRateId(score) {
+    if (score < 0 || score > 5) return null; // Validación de entrada
+
+    const hexChars = "0123456789abcdef";
+    let hexPart = "";
+
+    // Generamos 8 caracteres aleatorios (dejamos 2 para el valor codificado)
+    for (let i = 0; i < 8; i++) {
+        hexPart += hexChars[Math.floor(Math.random() * hexChars.length)];
     }
-});
+
+    // Calculamos el valor codificado SOLO con su número primo
+    let encodedStar = ((score * MULTIPLIERS[score]) + OFFSET).toString(16).padStart(2, '0');
+
+    // Insertamos en una posición pseudoaleatoria
+    let insertPos = (score * 3 + 5) % 8; // La posición se elige dentro de 8 caracteres
+    let rateId = hexPart.slice(0, insertPos) + encodedStar + hexPart.slice(insertPos);
+
+    return rateId;
+}
