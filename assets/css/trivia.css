@@ -1,0 +1,504 @@
+/* Import Variables */
+@import url('variables.css');
+
+:root {
+    --primary-font: 'Press Start 2P', cursive;
+    --bg-color: #111;
+    --text-color: #fff;
+    --button-bg: #ffcc00;
+    --button-hover-bg: #ffaa00;
+    --option-hover-bg: #444;
+    --correct-color: #4CAF50;
+    --incorrect-color: #E53935;
+    --disabled-color: #555;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--bg-color);
+    font-family: var(--primary-font);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+#game-container {
+    width: 600px;
+    padding: 2rem 1rem;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #222;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin: 1rem;
+}
+
+#game-container h2 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+}
+
+#game-container p {
+    font-size: 1rem;
+    line-height: 1.25rem;
+}
+
+
+/* Transiciones */
+.fade-out {
+    animation: fadeOut 0.8s forwards;
+}
+
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Imagen de fondo solo para la pantalla inicial */
+#game-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fondo con imagen cuando se está en la pantalla inicial */
+#game-container.start-background {
+    background: url("../img/FIFA93/referee.png") center/cover no-repeat;
+}
+
+/* Capa de oscurecimiento para mejorar la legibilidad */
+#game-container.start-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Oscurecimiento */
+    z-index: 0;
+}
+
+/* Ajuste de contenido en la pantalla inicial */
+#start-screen {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 2rem;
+}
+
+/* Texto "TRIVIA" con un color llamativo */
+#title {
+    font-size: 2.5rem;
+    color: #ffcc00; /* Amarillo brillante para destacar */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* Botón con misma fuente y estilo retro */
+#start-button {
+    margin-top: 1.5rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-family: var(--primary-font);
+    border: none;
+    background-color: var(--button-bg);
+    color: black;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: transform 0.3s ease-in-out, background-color 0.3s;
+    animation: bounce 1s infinite alternate;
+    text-transform: uppercase;
+}
+
+#start-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-10px); }
+}
+
+.question {
+    display: none;
+    opacity: 0;
+    width: 100%;
+}
+
+.option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.option {
+    padding: 0.75rem;
+    line-height: 1.25rem;
+    background-color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 80%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.option:hover {
+    background-color: var(--option-hover-bg);
+}
+
+/* Mensaje de respuesta */
+#feedback {
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    height: 3rem;
+    align-content: center;
+}
+
+/* Animaciones de respuesta */
+.correct {
+    background-color: var(--correct-color) !important;
+    color: black;
+    transform: scale(1.05);
+    font-weight: bold;
+    box-shadow: 0px 0px 10px var(--correct-color);
+}
+
+.incorrect {
+    background-color: var(--disabled-color) !important;
+    color: white;
+    opacity: 0.6;
+}
+
+.option.wrong {
+    background-color: var(--incorrect-color) !important;
+    opacity: 0.6;
+    color: white;
+    box-shadow: 0px 0px 10px var(--incorrect-color);
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+#score-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.75rem;
+}
+
+#score-text {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+#progress-bar {
+    width: 80%;
+    height: 0.75rem;
+    background-color: #444;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: auto;
+}
+
+#progress-fill {
+    width: 0%;
+    height: 100%;
+    background-color: var(--correct-color);
+    transition: width 0.5s ease-in-out;
+}
+
+#next-button {
+    background-color: #007bff;
+    color: white;
+}
+
+#next-button:hover {
+    background-color: #0056b3;
+}
+
+#final-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#final-message {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+}
+
+#final-score {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#celebration {
+    height: 200px;
+    margin: 2rem;
+}
+
+#question-screen > .button-container {
+    height: 3rem;
+    align-items: center;
+    display: flex;;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.button-container {
+    width: 100%;
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.button-container > * {
+    width: 80%;
+    font-family: var(--primary-font);  
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-container > *:hover {
+    transform: scale(1.05);
+}
+
+#share-button {   
+    background-color: #28a745;
+    color: white;    
+}
+
+#share-button:hover {
+    background-color: #218838;
+}
+
+#restart-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+#restart-button:hover {
+    background-color: #c82333; /* Rojo más oscuro */
+}
+
+/* Estilos del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+#share-modal .modal-content {
+    display: flex;
+    width: 400px;
+    height: 450px;
+    background: #222;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-error {
+    border: 2px solid #c82333 !important;
+    animation: shake 0.6s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.modal-content h3 {
+    line-height: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+.modal-content p {
+    line-height: 1.25rem;
+}
+
+.modal-content input {
+    width: 80%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}
+
+
+#confirm-share {
+    background-color: #28a745;
+    color: white;
+}
+
+#confirm-share:hover {
+    background-color: #218838;
+}
+
+#share-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+#share-link-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+#share-link {
+    background-color: #333;
+    color: white;
+}
+
+#copy-link-button {
+    background-color: #007bff;
+    color: white;
+}
+
+#copy-link-button:hover {
+    background-color: #0056b3;
+}
+
+#copy-link-button.copied {
+    background-color: #28a745 !important;
+    color: white;
+    transform: scale(1.05);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    #game-container {
+        width: 100%;
+        height: 600px;
+        padding: 1rem;
+    }
+
+    #share-link-container, .button-container{
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #share-link {
+        width: auto;
+        text-align: center;
+    }
+
+    #copy-link-button {
+        width: 100%;
+        height: auto;
+        padding: 0.75rem 0;
+    }
+
+    #share-modal .modal-content {
+        width: 300px;
+        height: 450px;
+    }
+
+    #game-container h2 {
+        font-size: 1rem;
+        line-height: 1.25rem;
+    }
+
+    #game-container p {
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+
+    #question-screen .option {
+        width: 100%;
+        font-size: 0.75rem;
+        line-height: 1rem;
+    }
+
+    #next-button {
+        padding: 0.75rem 0;
+        font-size: 0.75rem;
+    }
+
+    #celebration {
+        height: 150px;
+    }
+
+    .button-container > * {
+        padding: 0.75rem 0;
+        font-size: 0.75rem;
+        width: 100%;
+    }
+}

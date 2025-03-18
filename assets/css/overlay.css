@@ -1,0 +1,56 @@
+body {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    overflow: hidden;
+}
+
+/* Tarjeta del resultado */
+#overlay-container {
+    width: 600px;
+    padding: 2rem;
+    background: rgba(34, 34, 34, 0.85);
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+#overlay-message {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#overlay-score {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#overlay-celebration {
+    height: 200px;
+    margin: 2rem;
+}
+
+/* Animación fade-in */
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

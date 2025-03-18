@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/trivia.css">
+    <style>
+    </style>
+</head>
+
+<body>
+    <input type="hidden" id="game-id" value="47c2f3a3-d85b-4e51-8a48-e8ed61f5ba68">
+    <div id="game-container">
+        <div id="start-screen">
+            <h1 id="title">TRIVIA</h1>
+            <button id="start-button">START</button>
+        </div>
+        <div id="question-screen" class="question">
+            <div id="score-container">
+                <p id="score-text">Puntaje: 0/5</p>
+                <div id="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+            </div>
+            <p id="feedback"></p>
+            <h2>¿Cuál es el mejor jugador de FIFA International Soccer?</h2>
+            <div class="option-container">
+                <div class="option" data-correct="false">a. Nombre A</div>
+                <div class="option" data-correct="true">b. Nombre B</div>
+                <div class="option" data-correct="false">c. Nombre C</div>
+            </div>
+            <div class="button-container">
+                <button id="next-button" style="display: none;">CONTINUAR</button>
+            </div>
+        </div>
+        <div id="final-screen" class="question" style="display: none;">
+            <h2>¡Trivia Finalizada!</h2>
+            <p id="final-message"></p>
+            <img id="celebration" />
+            <p id="final-score"></p>
+            <div class="button-container">
+                <button id="share-button">COMPARTIR RESULTADO</button>
+                <button id="restart-button">VOLVER A EMPEZAR</button>
+            </div>           
+        </div>
+    </div>
+
+    <!-- Modal para ingresar el nombre -->
+    <div id="share-modal" class="modal">
+        <div class="modal-content">
+            <h3>Ingresa tu nombre</h3>
+            <input type="text" id="player-name" placeholder="Tu nombre">
+            <div class="button-container">
+                <button id="confirm-share">GENERAR URL</button>
+            </div>
+            <div id="share-container">
+                <p>Comparte el siguiente enlace:</p>
+                <div id="share-link-container">
+                    <input type="text" id="share-link" readonly>
+                    <div class="button-container">
+                        <button id="copy-link-button">COPIAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/js/trivia.js"></script>
+</body>
+
+</html>
