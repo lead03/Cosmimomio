@@ -213,14 +213,14 @@ document.getElementById("restart-button").addEventListener("click", function () 
 
 // Modal
 // Obtener elementos del modal
-const shareModal = document.getElementById("share-modal");
+const shareModal = document.getElementById("share-game-score-modal");
 const confirmShare = document.getElementById("confirm-share");
 const closeModal = document.getElementById("close-modal");
 const playerNameInput = document.getElementById("player-name");
 const shareLinkContainer = document.getElementById("share-container");
 const shareLinkInput = document.getElementById("share-link");
 const copyLinkButton = document.getElementById("copy-link-button");
-const gameId = document.getElementById("gameId");
+const gameId = document.getElementById("game-id");
 
 // Abrir el modal al hacer clic en "COMPARTIR RESULTADO"
 document.getElementById("share-button").addEventListener("click", function () {

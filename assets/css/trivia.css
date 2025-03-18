@@ -30,6 +30,13 @@ body {
     overflow: hidden;
 }
 
+.hidden {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+/* Contenedor del juego */
 #game-container {
     width: 600px;
     padding: 2rem 1rem;
@@ -56,6 +63,25 @@ body {
     line-height: 1.25rem;
 }
 
+#game-container {
+    position: relative;
+    overflow: hidden;
+}
+
+#game-container.start-background {
+    background: url("../img/FIFA93/referee.png") center/cover no-repeat;
+}
+
+#game-container.start-background::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 0;
+}
 
 /* Transiciones */
 .fade-out {
@@ -90,30 +116,37 @@ body {
     }
 }
 
-/* Imagen de fondo solo para la pantalla inicial */
-#game-container {
-    position: relative;
-    overflow: hidden;
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
 }
 
-/* Fondo con imagen cuando se está en la pantalla inicial */
-#game-container.start-background {
-    background: url("../img/FIFA93/referee.png") center/cover no-repeat;
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
 }
 
-/* Capa de oscurecimiento para mejorar la legibilidad */
-#game-container.start-background::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Oscurecimiento */
-    z-index: 0;
-}
-
-/* Ajuste de contenido en la pantalla inicial */
+/* Pantalla inicial */
 #start-screen {
     position: relative;
     z-index: 1;
@@ -126,14 +159,13 @@ body {
     gap: 2rem;
 }
 
-/* Texto "TRIVIA" con un color llamativo */
 #title {
     font-size: 2.5rem;
-    color: #ffcc00; /* Amarillo brillante para destacar */
+    color: #ffcc00;
+    /* Amarillo brillante para destacar */
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
-/* Botón con misma fuente y estilo retro */
 #start-button {
     margin-top: 1.5rem;
     padding: 1rem 2rem;
@@ -153,73 +185,11 @@ body {
     background-color: var(--button-hover-bg);
 }
 
-@keyframes bounce {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-10px); }
-}
-
+/* Pantalla de pregunta */
 .question {
     display: none;
     opacity: 0;
     width: 100%;
-}
-
-.option-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 1.5rem;
-    gap: 1rem;
-    padding: 1rem;
-}
-
-.option {
-    padding: 0.75rem;
-    line-height: 1.25rem;
-    background-color: #333;
-    border-radius: 10px;
-    cursor: pointer;
-    width: 80%;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.option:hover {
-    background-color: var(--option-hover-bg);
-}
-
-/* Mensaje de respuesta */
-#feedback {
-    font-size: 1rem;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    height: 3rem;
-    align-content: center;
-}
-
-/* Animaciones de respuesta */
-.correct {
-    background-color: var(--correct-color) !important;
-    color: black;
-    transform: scale(1.05);
-    font-weight: bold;
-    box-shadow: 0px 0px 10px var(--correct-color);
-}
-
-.incorrect {
-    background-color: var(--disabled-color) !important;
-    color: white;
-    opacity: 0.6;
-}
-
-.option.wrong {
-    background-color: var(--incorrect-color) !important;
-    opacity: 0.6;
-    color: white;
-    box-shadow: 0px 0px 10px var(--incorrect-color);
-}
-
-.disabled {
-    pointer-events: none;
 }
 
 #score-container {
@@ -249,6 +219,46 @@ body {
     transition: width 0.5s ease-in-out;
 }
 
+#feedback {
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    height: 3rem;
+    align-content: center;
+}
+
+.option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.option {
+    padding: 0.75rem;
+    line-height: 1.25rem;
+    background-color: #333;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 80%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.option:hover {
+    background-color: var(--option-hover-bg);
+}
+
+#question-screen>.button-container {
+    height: 3rem;
+    align-items: center;
+    display: flex;
+    ;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
 #next-button {
     background-color: #007bff;
     color: white;
@@ -258,6 +268,33 @@ body {
     background-color: #0056b3;
 }
 
+/* Tipos de respuesta */
+.correct {
+    background-color: var(--correct-color) !important;
+    color: black;
+    transform: scale(1.05);
+    font-weight: bold;
+    box-shadow: 0px 0px 10px var(--correct-color);
+}
+
+.incorrect {
+    background-color: var(--disabled-color) !important;
+    color: white;
+    opacity: 0.6;
+}
+
+.option.wrong {
+    background-color: var(--incorrect-color) !important;
+    opacity: 0.6;
+    color: white;
+    box-shadow: 0px 0px 10px var(--incorrect-color);
+}
+
+.disabled {
+    pointer-events: none;
+}
+
+/* Pantalla final */
 #final-screen {
     display: flex;
     flex-direction: column;
@@ -273,24 +310,17 @@ body {
     margin: 0.5rem 0;
 }
 
-#final-score {
-    font-size: 1rem;
-    font-weight: bold;
-}
-
 #celebration {
     height: 200px;
     margin: 2rem;
 }
 
-#question-screen > .button-container {
-    height: 3rem;
-    align-items: center;
-    display: flex;;
-    flex-direction: column;
-    justify-content: flex-end;
+#final-score {
+    font-size: 1rem;
+    font-weight: bold;
 }
 
+/* Botones de acción */
 .button-container {
     width: 100%;
     margin: 1.5rem 0;
@@ -301,9 +331,9 @@ body {
     flex-direction: column;
 }
 
-.button-container > * {
+.button-container>* {
     width: 80%;
-    font-family: var(--primary-font);  
+    font-family: var(--primary-font);
     padding: 0.75rem 1rem;
     font-size: 1rem;
     border: none;
@@ -312,13 +342,13 @@ body {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.button-container > *:hover {
+.button-container>*:hover {
     transform: scale(1.05);
 }
 
-#share-button {   
+#share-button {
     background-color: #28a745;
-    color: white;    
+    color: white;
 }
 
 #share-button:hover {
@@ -331,11 +361,11 @@ body {
 }
 
 #restart-button:hover {
-    background-color: #c82333; /* Rojo más oscuro */
+    background-color: #c82333;
 }
 
 /* Estilos del modal */
-.modal {
+#share-game-score-modal {
     display: none;
     position: fixed;
     top: 0;
@@ -347,7 +377,7 @@ body {
     align-items: center;
 }
 
-#share-modal .modal-content {
+#share-game-score-modal .modal-content {
     display: flex;
     width: 400px;
     height: 450px;
@@ -362,28 +392,16 @@ body {
     justify-content: center;
 }
 
-.input-error {
-    border: 2px solid #c82333 !important;
-    animation: shake 0.6s ease-in-out;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-}
-
-.modal-content h3 {
+#share-game-score-modal .modal-content h3 {
     line-height: 1.75rem;
     margin-bottom: 2rem;
 }
 
-.modal-content p {
+#share-game-score-modal .modal-content p {
     line-height: 1.25rem;
 }
 
-.modal-content input {
+#share-game-score-modal .modal-content input {
     width: 80%;
     padding: 8px;
     border-radius: 5px;
@@ -391,84 +409,63 @@ body {
     text-align: center;
 }
 
-
-#confirm-share {
-    background-color: #28a745;
-    color: white;
+#share-game-score-modal .modal-content .input-error {
+    border: 2px solid #c82333 !important;
+    animation: shake 0.6s ease-in-out;
 }
 
-#confirm-share:hover {
-    background-color: #218838;
-}
-
-#share-container {
+#share-game-score-modal .modal-content #share-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
 }
 
-#share-link-container {
+#share-game-score-modal .modal-content #share-container #share-link-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
 
-#share-link {
+/* Botones del modal */
+#share-game-score-modal #confirm-share {
+    background-color: #28a745;
+    color: white;
+}
+
+#share-game-score-modal #confirm-share:hover {
+    background-color: #218838;
+}
+
+#share-game-score-modal #share-link {
     background-color: #333;
     color: white;
 }
 
-#copy-link-button {
+#share-game-score-modal #copy-link-button {
     background-color: #007bff;
     color: white;
 }
 
-#copy-link-button:hover {
+#share-game-score-modal #copy-link-button:hover {
     background-color: #0056b3;
 }
 
-#copy-link-button.copied {
+#share-game-score-modal #copy-link-button.copied {
     background-color: #28a745 !important;
     color: white;
     transform: scale(1.05);
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.hidden {
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    pointer-events: none;
-}
-
 @media (max-width: 480px) {
+
+    /* Contenedor del juego */
     #game-container {
         width: 100%;
         height: 600px;
         padding: 1rem;
-    }
-
-    #share-link-container, .button-container{
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #share-link {
-        width: auto;
-        text-align: center;
-    }
-
-    #copy-link-button {
-        width: 100%;
-        height: auto;
-        padding: 0.75rem 0;
-    }
-
-    #share-modal .modal-content {
-        width: 300px;
-        height: 450px;
     }
 
     #game-container h2 {
@@ -481,24 +478,42 @@ body {
         line-height: 1rem;
     }
 
+    /* Pantalla del pregunta */
     #question-screen .option {
         width: 100%;
         font-size: 0.75rem;
         line-height: 1rem;
     }
 
-    #next-button {
-        padding: 0.75rem 0;
-        font-size: 0.75rem;
-    }
-
+    /* Pantalla final */
     #celebration {
         height: 150px;
     }
 
-    .button-container > * {
+    /* Botones de acción */
+    .button-container {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button-container>* {
         padding: 0.75rem 0;
         font-size: 0.75rem;
         width: 100%;
     }
+
+    /* Estilos del modal */
+    #share-game-score-modal .modal-content {
+        width: 300px;
+        height: 450px;
+    }
+
+
+    /* #share-link {
+        width: auto;
+        text-align: center;
+    } */
+
+
 }
