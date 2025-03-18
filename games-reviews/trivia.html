@@ -32,7 +32,7 @@
                 <div class="option" data-correct="true">b. Nombre B</div>
                 <div class="option" data-correct="false">c. Nombre C</div>
             </div>
-            <div class="next-container">
+            <div class="button-container">
                 <button id="next-button" style="display: none;">CONTINUAR</button>
             </div>
         </div>
@@ -41,9 +41,10 @@
             <p id="final-message"></p>
             <img id="celebration" />
             <p id="final-score"></p>
-            <div></div>
-            <button id="share-button">COMPARTIR RESULTADO</button>
-            <button id="restart-button">VOLVER A EMPEZAR</button>
+            <div class="button-container">
+                <button id="share-button">COMPARTIR RESULTADO</button>
+                <button id="restart-button">VOLVER A EMPEZAR</button>
+            </div>           
         </div>
     </div>
 
@@ -54,13 +55,14 @@
             <input type="text" id="player-name" placeholder="Tu nombre">
             <div class="button-container">
                 <button id="confirm-share">GENERAR URL</button>
-                <button id="close-modal">CANCELAR</button>
             </div>
             <div id="share-container">
                 <p>Comparte el siguiente enlace:</p>
                 <div id="share-link-container">
                     <input type="text" id="share-link" readonly>
-                    <button id="copy-link-button">COPIAR</button>
+                    <div class="button-container">
+                        <button id="copy-link-button">COPIAR</button>
+                    </div>
                 </div>
             </div>
         </div>

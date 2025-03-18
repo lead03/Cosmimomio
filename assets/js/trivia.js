@@ -229,9 +229,11 @@ document.getElementById("share-button").addEventListener("click", function () {
     playerNameInput.value = ""; // Limpiar campo de nombre
 });
 
-// Cerrar modal sin hacer nada
-closeModal.addEventListener("click", function () {
-    shareModal.style.display = "none";
+// Cerrar el modal al hacer clic fuera de él
+window.addEventListener("click", function (event) {
+    if (event.target === shareModal) {
+        shareModal.style.display = "none";
+    }
 });
 
 // Generar URL cuando se confirme el nombre
