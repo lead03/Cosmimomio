@@ -271,6 +271,22 @@ figcaption {
     border-radius: 999px;
 }
 
+@media (hover: hover) {
+    .button-slider-container {
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+    }
+
+    .gallery:hover .button-slider-container {
+        opacity: 1;
+    }
+}
+
+/* Siempre visibles en dispositivos táctiles */
+.button-slider-container.touch-visible {
+    opacity: 1 !important;
+}
+
 /* Curiosities */
 .curiosities {
     margin-top: var(--spacing);
