@@ -8,7 +8,7 @@
     --button-bg: #ffcc00;
     --button-hover-bg: #ffaa00;
     --option-hover-bg: #444;
-    --correct-color: #4CAF50;
+    --correct-color: #50c655;
     --incorrect-color: #E53935;
     --disabled-color: #555;
 }
@@ -54,8 +54,10 @@ body {
 }
 
 #game-container h2 {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
+    padding: 0 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    color: var(--title-color);
 }
 
 #game-container p {
@@ -156,13 +158,12 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
-    gap: 2rem;
+    gap: 6rem;
 }
 
 #title {
     font-size: 2.5rem;
     color: #ffcc00;
-    /* Amarillo brillante para destacar */
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
 }
 
@@ -251,10 +252,9 @@ body {
 }
 
 #question-screen>.button-container {
-    height: 3rem;
+    height: 2rem;
     align-items: center;
     display: flex;
-    ;
     flex-direction: column;
     justify-content: flex-end;
 }
@@ -271,7 +271,7 @@ body {
 /* Tipos de respuesta */
 .correct {
     background-color: var(--correct-color) !important;
-    color: black;
+    color: white;
     transform: scale(1.05);
     font-weight: bold;
     box-shadow: 0px 0px 10px var(--correct-color);
@@ -380,7 +380,7 @@ body {
 #share-game-score-modal .modal-content {
     display: flex;
     width: 400px;
-    height: 450px;
+    height: 300px;
     background: #222;
     padding: 1.5rem;
     border-radius: 10px;
@@ -390,6 +390,13 @@ body {
     align-content: center;
     align-items: center;
     justify-content: center;
+    transition: height 0.5s ease-in-out;
+    overflow: hidden;
+    opacity: 1; 
+}
+
+#share-game-score-modal .modal-content.expanded {
+    height: 450px;
 }
 
 #share-game-score-modal .modal-content h3 {
@@ -419,6 +426,15 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, height 0.5s ease-in-out;
+    height: 0px;
+    overflow: hidden;
+}
+
+#share-game-score-modal .modal-content.expanded #share-container {
+    opacity: 1;
+    height: 250px;
 }
 
 #share-game-score-modal .modal-content #share-container #share-link-container {
@@ -426,6 +442,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    margin: 1rem 0;
 }
 
 /* Botones del modal */
@@ -459,6 +476,11 @@ body {
     transition: background-color 0.3s, transform 0.3s;
 }
 
+#share-game-score-modal #view-overlay-button {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
+    color: white;
+}
+
 @media (max-width: 480px) {
 
     /* Contenedor del juego */
@@ -469,6 +491,8 @@ body {
     }
 
     #game-container h2 {
+        display: flex;
+        justify-content: center;
         font-size: 1rem;
         line-height: 1.25rem;
     }
@@ -483,6 +507,10 @@ body {
         width: 100%;
         font-size: 0.75rem;
         line-height: 1rem;
+    }
+
+    #question-screen .option-container {
+        height: 15rem;
     }
 
     /* Pantalla final */
@@ -506,14 +534,9 @@ body {
     /* Estilos del modal */
     #share-game-score-modal .modal-content {
         width: 300px;
-        height: 450px;
     }
 
-
-    /* #share-link {
-        width: auto;
-        text-align: center;
-    } */
-
-
+    #share-game-score-modal .modal-content.expanded {
+        height: 500px;
+    }
 }

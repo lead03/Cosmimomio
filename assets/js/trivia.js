@@ -217,14 +217,17 @@ const shareModal = document.getElementById("share-game-score-modal");
 const confirmShare = document.getElementById("confirm-share");
 const closeModal = document.getElementById("close-modal");
 const playerNameInput = document.getElementById("player-name");
-const shareLinkContainer = document.getElementById("share-container");
+const shareLinkContainer = document.querySelector("#share-game-score-modal .modal-content #share-container");
+const modalContent = document.querySelector("#share-game-score-modal .modal-content");
 const shareLinkInput = document.getElementById("share-link");
 const copyLinkButton = document.getElementById("copy-link-button");
-const gameId = document.getElementById("game-id");
+const gameId = document.getElementById("game-id").value;
+const viewOverlayButton = document.getElementById("view-overlay-button");
+var shareUrl = "";
 
 // Abrir el modal al hacer clic en "COMPARTIR RESULTADO"
 document.getElementById("share-button").addEventListener("click", function () {
-    shareModal.style.display = "flex";
+    shareModal.style.display = "flex";    
     shareLinkContainer.style.display = "none"; // Ocultar el contenedor del enlace al abrir el modal
     playerNameInput.value = ""; // Limpiar campo de nombre
 });
@@ -233,6 +236,8 @@ document.getElementById("share-button").addEventListener("click", function () {
 window.addEventListener("click", function (event) {
     if (event.target === shareModal) {
         shareModal.style.display = "none";
+        modalContent.classList.remove("expanded");
+        shareLinkContainer.classList.remove("expanded");
     }
 });
 
@@ -241,20 +246,24 @@ confirmShare.addEventListener("click", function () {
     let playerName = playerNameInput.value.trim();
     if (playerName === "") {
         playerNameInput.classList.add("input-error");
-        shareLinkContainer.style.display = "none";
         setTimeout(() => {
             playerNameInput.classList.remove("input-error");
         }, 600);
         return;
     }
 
-    let rateId = generateRateId(score); // Genera un número hexadecimal de 10 dígitos
+    let rateId = generateRateId(score);
+    shareUrl = `${window.location.origin}/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
 
-    let shareUrl = `https://tudominio.com/game?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
+    // Expande el modal con una animación de opacidad
+    
+    modalContent.classList.add("expanded");
+    shareLinkContainer.style.display = "block"; // Mostrar el contenedor del enlace
 
-    // Mostrar la URL en el input del modal
-    shareLinkInput.value = shareUrl;
-    shareLinkContainer.style.display = "flex"; // Hacer visible el contenedor del enlace
+    setTimeout(() => {
+        shareLinkInput.value = shareUrl;
+        shareLinkContainer.classList.add("expanded"); // Aplica la clase que hace visible el contenido
+    }, 300); // Se espera 300ms para que la animación sea fluida
 });
 
 // Copiar el enlace al portapapeles
@@ -319,3 +328,7 @@ document.getElementById("start-button").addEventListener("click", function () {
 
 // Agregar la imagen de fondo solo en la pantalla inicial
 document.getElementById("game-container").classList.add("start-background");
+
+viewOverlayButton.addEventListener("click", function () {
+    window.open(shareUrl, "_blank");
+});

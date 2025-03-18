@@ -21,10 +21,10 @@ const overlayCelebration = document.getElementById("overlay-celebration");
 // Mensajes e imágenes según el puntaje
 const messages = [
     "Puedes mejorar. ¡Inténtalo de nuevo!",
-    "¡Sigue intentándolo! Puedes hacerlo mejor.",
-    "¡Casi! Sigue practicando para mejorar.",
-    "¡Bien! Aún puedes mejorar.",
-    "¡Muy bien! Estuviste a un paso de la perfección.",
+    "¡Sigue intentándolo! Puedes hacerlo mejor",
+    "¡Casi! Sigue practicando para mejorar",
+    "¡Bien! Aún puedes mejorar",
+    "¡Muy bien! Estuviste a un paso de la perfección",
     "¡Increíble! Has acertado todas las preguntas"
 ];
 
@@ -57,7 +57,7 @@ function getRateFromCode(rateId) {
 }
 
 // Verificar si el `gameId` existe en el diccionario
-overlayGameTitle.textContent = gameNames[gameId] ? `Juego: ${gameNames[gameId]}` : "Juego Desconocido";
+overlayGameTitle.textContent = gameNames[gameId] ? `${gameNames[gameId]}` : "Juego Desconocido";
 
 // Mostrar la información en la pantalla
 overlayMessage.textContent = `${playerName}, ${messages[getRateFromCode(rateId)]}`;
