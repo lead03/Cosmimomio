@@ -22,6 +22,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Gigode';
+    src: url('../fonts/Gidole-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 /* Color Palette - Gaming Inspired */
 :root {
@@ -29,23 +36,40 @@
     --secondary-color: #ff0054;
     --tertiary-color: #00072d;
     --title-color: #ffbe0b;
+    --title-shadow-color: rgba(255, 190, 11, 0.6);  
     --text-color: #e0e0e0;
-    --title-shadow-color: rgba(255, 190, 11, 0.6);   
-    --transparent-bg-color: rgba(15, 0, 30, 0.9); 
-    --card-background: rgba(40, 0, 70, 0.95);
-    --card-shadow: rgba(0, 0, 0, 0.8);   
+    --main-background-color: #1a052fe6;
+
+    /* Highlight Title */   
     --highlight-color: #00f5d4;
+    --highlight-shadow-color: rgba(255, 255, 255, 0.8);
+
+    /* Highlight Section */
     --border-highlight: #ff477e;
     --shadow-highlight: rgba(255, 71, 126, 0.6);
-    --highlight-bg-color: rgba(0, 255, 212, 0.1);  
+    --highlight-bg-color: rgba(0, 255, 212, 0.1);
+    
+    /* Modal */
     --modal-bg-color: rgba(30, 0, 60, 1);
+    
+    /* Carousel */
     --carousel-button-bg: rgba(60, 0, 100, 0.8);
+    --carousel-background: rgba(40, 0, 70, 0.95);
+
+    /* Shadows */
+    --black-transparent-shadow: rgba(0, 0, 0, 0.3);
+    --transparent-grey: rgba(255, 255, 255, 0.2);
+
+    /* Remarked banner */
+    --remarked-banner-lines-color: #663399;
+    --remarked-banner-remarked-text-color: #e44d26;
 }
 
 /* Typography */
 :root {
     --primary-font: 'Press Start 2P', cursive;
     --secondary-font: 'Roboto', sans-serif;
+    --remarked-font: 'Gigode', sans-serif;
 }
 
 /* Font Sizes */
