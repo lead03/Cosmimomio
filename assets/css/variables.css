@@ -92,13 +92,9 @@
 .material-symbols-outlined {
     font-family: 'Material Symbols', sans-serif;
     font-size: 24px;
-}
-
-/* Font Variations */
-.material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
 }
