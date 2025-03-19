@@ -76,7 +76,7 @@
 :root {
     --h1-size: 2rem;
     --h2-size: 1.25rem;
-    --paragraph-size: 1.25rem;
+    --paragraph-size: 18px;
     --icon-size: 2rem;
     --h1-padding: 2rem;
     --h2-margin: 1.25rem;

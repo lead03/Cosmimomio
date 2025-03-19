@@ -288,7 +288,6 @@ figcaption {
     max-width: 95vw;
     max-height: 95vh;
     backdrop-filter: blur(10px);
-    border: 1px solid var(--transparent-grey);
     animation: popIn 0.4s ease-in-out;
 }
 
@@ -398,14 +397,33 @@ figcaption {
 @media screen and (max-width: 768px) {
     h1 {
         font-size: calc(var(--h1-size) * 0.75);
+        margin-left: 0;
+        margin-right: 0;
     }
 
     h2 {
-        font-size: calc(var(--h2-size) * 0.85);
+        font-size: calc(var(--h2-size) * 0.75);
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    p {
+        font-size: calc(var(--h2-size) * 0.75);
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .title-name {
         font-size: calc(var(--h1-size) * 0.6);
+    }
+
+    .highlight-banner .highlight-text p {
+        font-size: 1.25rem;
+    }
+
+    .highlight-icon.material-symbols-outlined {
+        visibility: hidden;
+        display: none;
     }
 
     .rating h3 {
