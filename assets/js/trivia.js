@@ -216,7 +216,7 @@ confirmShare.addEventListener("click", function () {
     let isDeployed = true;
     shareUrl ="";
     if(isDeployed){
-        shareUrl = `${window.location.origin}/cosmimomio/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
+        shareUrl = `${window.location.origin}/Cosmimomio/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
     } else {
         shareUrl = `${window.location.origin}/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
     }
