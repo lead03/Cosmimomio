@@ -19,17 +19,6 @@
     padding: 0;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: var(--bg-color);
-    font-family: var(--primary-font);
-    color: var(--text-color);
-    overflow: hidden;
-}
-
 .hidden {
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -40,17 +29,19 @@ body {
 #game-container {
     width: 600px;
     padding: 2rem 1rem;
-    height: 600px;
+    height: 650px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
     text-align: center;
-    background-color: #222;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     position: relative;
-    margin: 1rem;
+    margin: auto;
+    overflow: hidden;
+    background-color: var(--transparent-black);
+    font-family: var(--primary-font);
+    color: var(--text-color);
 }
 
 #game-container h2 {
@@ -63,11 +54,7 @@ body {
 #game-container p {
     font-size: 1rem;
     line-height: 1.25rem;
-}
-
-#game-container {
-    position: relative;
-    overflow: hidden;
+    font-family: var(--primary-font);
 }
 
 #game-container.start-background {
@@ -194,9 +181,12 @@ body {
 }
 
 #score-container {
+    display: flex;
     width: 100%;
     text-align: center;
-    margin-bottom: 0.75rem;
+    margin: 1rem 0;
+    flex-direction: column;
+    align-items: center;
 }
 
 #score-text {
@@ -226,13 +216,15 @@ body {
     transition: opacity 0.5s ease-in-out;
     height: 3rem;
     align-content: center;
+    text-align: center;
 }
 
 .option-container {
     display: flex;
+    height: 260px;
     flex-direction: column;
     align-items: center;
-    margin-top: 1.5rem;
+    justify-content: center;
     gap: 1rem;
     padding: 1rem;
 }
@@ -252,11 +244,20 @@ body {
 }
 
 #question-screen>.button-container {
-    height: 2rem;
+    height: auto;
     align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+}
+
+#question-screen h2 {
+    text-transform: unset;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
 }
 
 #next-button {
@@ -299,6 +300,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 1rem;
     align-items: center;
     text-align: center;
     opacity: 0;
@@ -308,6 +310,7 @@ body {
 #final-message {
     font-size: 1.25rem;
     margin: 0.5rem 0;
+    text-align: center;
 }
 
 #celebration {
@@ -392,11 +395,11 @@ body {
     justify-content: center;
     transition: height 0.5s ease-in-out;
     overflow: hidden;
-    opacity: 1; 
+    opacity: 1;
 }
 
 #share-game-score-modal .modal-content.expanded {
-    height: 450px;
+    height: 600px;
 }
 
 #share-game-score-modal .modal-content h3 {
@@ -405,7 +408,10 @@ body {
 }
 
 #share-game-score-modal .modal-content p {
+    font-size: 1rem;
     line-height: 1.25rem;
+    font-family: var(--primary-font);
+    text-align: center;
 }
 
 #share-game-score-modal .modal-content input {
@@ -433,6 +439,7 @@ body {
 }
 
 #share-game-score-modal .modal-content.expanded #share-container {
+    width: 100%;
     opacity: 1;
     height: 250px;
 }
@@ -491,8 +498,7 @@ body {
     }
 
     #game-container h2 {
-        display: flex;
-        justify-content: center;
+        height: 7rem;
         font-size: 1rem;
         line-height: 1.25rem;
     }
@@ -503,6 +509,10 @@ body {
     }
 
     /* Pantalla del pregunta */
+    #question-screen h2 {
+        height: 100px;
+    }
+
     #question-screen .option {
         width: 100%;
         font-size: 0.75rem;
@@ -513,7 +523,11 @@ body {
         height: 15rem;
     }
 
-    /* Pantalla final */
+    #final-screen h2 {
+        height: unset;
+        margin: 1rem 0;
+    }
+
     #celebration {
         height: 150px;
     }
@@ -534,9 +548,5 @@ body {
     /* Estilos del modal */
     #share-game-score-modal .modal-content {
         width: 300px;
-    }
-
-    #share-game-score-modal .modal-content.expanded {
-        height: 500px;
     }
 }

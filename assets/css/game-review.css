@@ -14,7 +14,12 @@
     font-style: normal;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--primary-font);
 }
 
@@ -33,7 +38,7 @@ body {
     padding: 0;
     background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--tertiary-color));
     text-align: center;
-    display: flex;  
+    display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
@@ -93,7 +98,7 @@ figcaption {
     align-items: center;
     gap: 1rem;
     width: 100%;
-}	
+}
 
 .rating-container h3 {
     font-size: 1rem;
@@ -155,8 +160,9 @@ figcaption {
     box-shadow: var(--neon-secondary-card-shadow);
 }
 
-.gallery h2, figcaption {
-    color:var(--neon-secondary-card-font-color);
+.gallery h2,
+figcaption {
+    color: var(--neon-secondary-card-font-color);
 }
 
 .gallery figcaption {
@@ -185,50 +191,6 @@ figcaption {
 .gallery img:hover {
     transform: scale(1.05);
     filter: brightness(1.1);
-}
-
-/* Modal */
-.modal-content {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(173, 161, 161, 0.95));
-    color: var(--text-color);
-    box-shadow: var(--shadow-highlight);
-    border-radius: var(--border-radius);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    margin: auto;
-    max-width: 95vw;
-    max-height: 95vh;
-    backdrop-filter: blur(10px);
-    animation: popIn 0.4s ease-in-out;
-}
-
-.modal-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-body img {
-    max-width: 200%;
-    max-height: 200%;
-    width: auto;
-    height: auto;
-    border-radius: var(--border-radius);
-}
-
-.modal-content button {
-    margin: 2rem;
-}
-
-.modal-dialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: none;
-    width: auto;
 }
 
 /* Carousel Navigation Buttons */
@@ -262,6 +224,55 @@ figcaption {
     opacity: 1 !important;
 }
 
+/* Image modal */
+#imageModal .modal-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    max-width: 100%;
+    width: auto;
+}
+
+#imageModal .modal-content {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(173, 161, 161, 0.95));
+    box-shadow: var(--shadow-highlight);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#imageModal .modal-body {
+    padding: 1rem;
+    display: block;
+    max-width: 100%;
+    max-height: 95vh;
+    overflow: auto;
+}
+
+#imageModal .modal-footer {
+    border: none;
+    font-family: var(--primary-font);
+}
+
+#imageModal .modal-body img {
+    display: block;
+    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+}
+
 /* Curiosities */
 .curiosities {
     display: flex;
@@ -287,7 +298,7 @@ figcaption {
 .curiosity {
     display: flex;
     flex-direction: column;
-    padding: 1rem ;
+    padding: 1rem;
     background: var(--transparent-grey);
     border-left: 5px solid var(--highlight-color);
     text-align: left;
@@ -339,18 +350,6 @@ figcaption {
 }
 
 @media screen and (max-width: 768px) {
-    .modal-content {
-        padding: 1rem;
-    }
-
-    .modal-content button {
-        margin: 1rem auto;
-        display: block;
-        width: 80%;
-    }
-}
-
-@media screen and (max-width: 768px) {
     .button-slider-container {
         width: 40px;
         height: 40px;
@@ -367,5 +366,11 @@ figcaption {
     .carousel-control-prev,
     .carousel-control-next {
         width: 15%;
+    }
+}
+
+@media (max-height: 699px) {
+    #imageModal .modal-footer {
+        display: none;
     }
 }

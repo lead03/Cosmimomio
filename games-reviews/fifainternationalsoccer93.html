@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../assets/css/game-review.css">
     <link rel="stylesheet" href="../assets/css/info-box.css">
+    <link rel="stylesheet" href="../assets/css/trivia.css">
     <title>Curiosidades de FIFA International Soccer</title>
 </head>
 
@@ -32,111 +33,197 @@
                 puse manos a la obra para configurar los botones exactamente como en la consola y asegurarme una
                 experiencia auténtica, como si estuviera jugando en el hardware original.
             </p>
-            <h2>Jugabilidad y Características del Juego</h2>
-            <p>
-                A medida que avanzo en el juego, para mi sorpresa, me encuentro con una experiencia mucho más
-                entretenida de lo que esperaba. Imaginaba un juego tosco y poco disfrutable, pero terminó siendo todo lo
-                contrario. Además, me sorprendieron las múltiples <strong>configuraciones tácticas muy adelantadas para
-                    su época</strong>, como la posibilidad de ajustar la estrategia de juego, la presión en cada línea
-                (defensa, mediocampo y delantera), el clima que afecta el comportamiento del balón y la simulación del
-                cansancio en los jugadores. Y créanme, <strong>el aspecto táctico es clave si se quiere ganar con
-                    selecciones de menor nivel</strong>, donde jugar sin estrategia haría casi imposible la victoria.
-            </p>
-            <p>
-                El juego también ofrece <strong>varios modos de competición</strong>: un torneo que simula la
-                <strong>Copa del Mundo</strong> desde la fase de grupos, otro modo que permite jugar directamente desde
-                los <strong>octavos de final</strong>, una <strong>liga</strong>, y por supuesto, el clásico
-                <strong>partido amistoso</strong> donde podemos seleccionar dos selecciones y jugar un partido rápido.
-                Es importante destacar que el juego <strong>permite ajustar la duración de los partidos</strong>, lo que
-                puede hacer que los encuentros sean más cortos o más largos según la preferencia del jugador. También se
-                destaca la importancia de la <strong>jerarquía de los equipos</strong>, lo que significa que, partido a
-                partido, los
-                mejores equipos serán los que más victorias acumulen. Sin embargo, siempre habrá espacio para las
-                sorpresas.
-            </p>
-            <div class="info-box">
-                <div class="info-box-text">
-                    <span class="info-box-icon material-symbols-outlined">emoji_events</span>
-                    <p>
-                        Según la pantalla de selección de equipo, Alemania es el mejor. Sin embargo <span
-                            class="info-box-keyphrase">Italia tiene la media de calificación de habilidad más
-                            alta</span> con 82,72, superando a EA All-Stars (82,52), Países Bajos (80,80) y Alemania
-                        (80.07).
-                    </p>
-                    <span class="info-box-icon material-symbols-outlined">sports_soccer</span>
+            <div>
+                <input type="hidden" id="game-id" value="47c2f3a3-d85b-4e51-8a48-e8ed61f5ba68">
+                <div id="game-container">
+                    <div id="start-screen">
+                        <h1 id="title">TRIVIA</h1>
+                        <button id="start-button">START</button>
+                    </div>
+                    <div id="question-screen" class="question">
+                        <div id="score-container">
+                            <p id="score-text">Puntaje: 0/5</p>
+                            <div id="progress-bar">
+                                <div id="progress-fill"></div>
+                            </div>
+                        </div>
+                        <p id="feedback"></p>
+                        <h2>¿Cuál es el mejor jugador de FIFA International Soccer?</h2>
+                        <div class="option-container">
+                            <div class="option" data-correct="false">a. Nombre A</div>
+                            <div class="option" data-correct="true">b. Nombre B</div>
+                            <div class="option" data-correct="false">c. Nombre C</div>
+                        </div>
+                        <div class="button-container">
+                            <button id="next-button" style="display: none;">CONTINUAR</button>
+                        </div>
+                    </div>
+                    <div id="final-screen" class="question" style="display: none;">
+                        <h2>¡Trivia Finalizada!</h2>
+                        <p id="final-message"></p>
+                        <img id="celebration" />
+                        <p id="final-score"></p>
+                        <div class="button-container">
+                            <button id="share-button">COMPARTIR RESULTADO</button>
+                            <button id="restart-button">VOLVER A EMPEZAR</button>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Modal para ingresar el nombre -->
+                <div id="share-game-score-modal" class="modal">
+                    <div class="modal-content">
+                        <h3>Ingresa tu nombre</h3>
+                        <input type="text" id="player-name" placeholder="Tu nombre">
+                        <div class="button-container">
+                            <button id="confirm-share">GENERAR LINK</button>
+                        </div>
+                        <div id="share-container">
+                            <p>Comparte el siguiente enlace:</p>
+                            <div id="share-link-container">
+                                <input type="text" id="share-link" readonly>
+                                <div class="button-container">
+                                    <button id="copy-link-button">COPIAR</button>
+                                    <button id="view-overlay-button">Ver Resultado</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2>Jugabilidad y Características del Juego</h2>
+                <p>
+                    A medida que avanzo en el juego, para mi sorpresa, me encuentro con una experiencia mucho más
+                    entretenida de lo que esperaba. Imaginaba un juego tosco y poco disfrutable, pero terminó siendo
+                    todo lo
+                    contrario. Además, me sorprendieron las múltiples <strong>configuraciones tácticas muy adelantadas
+                        para
+                        su época</strong>, como la posibilidad de ajustar la estrategia de juego, la presión en cada
+                    línea
+                    (defensa, mediocampo y delantera), el clima que afecta el comportamiento del balón y la simulación
+                    del
+                    cansancio en los jugadores. Y créanme, <strong>el aspecto táctico es clave si se quiere ganar con
+                        selecciones de menor nivel</strong>, donde jugar sin estrategia haría casi imposible la
+                    victoria.
+                </p>
+                <p>
+                    El juego también ofrece <strong>varios modos de competición</strong>: un torneo que simula la
+                    <strong>Copa del Mundo</strong> desde la fase de grupos, otro modo que permite jugar directamente
+                    desde
+                    los <strong>octavos de final</strong>, una <strong>liga</strong>, y por supuesto, el clásico
+                    <strong>partido amistoso</strong> donde podemos seleccionar dos selecciones y jugar un partido
+                    rápido.
+                    Es importante destacar que el juego <strong>permite ajustar la duración de los partidos</strong>, lo
+                    que
+                    puede hacer que los encuentros sean más cortos o más largos según la preferencia del jugador.
+                    También se
+                    destaca la importancia de la <strong>jerarquía de los equipos</strong>, lo que significa que,
+                    partido a
+                    partido, los
+                    mejores equipos serán los que más victorias acumulen. Sin embargo, siempre habrá espacio para las
+                    sorpresas.
+                </p>
+                <div class="info-box">
+                    <div class="info-box-text">
+                        <span class="info-box-icon material-symbols-outlined">emoji_events</span>
+                        <p>
+                            Según la pantalla de selección de equipo, Alemania es el mejor. Sin embargo <span
+                                class="info-box-keyphrase">Italia tiene la media de calificación de habilidad más
+                                alta</span> con 82,72, superando a EA All-Stars (82,52), Países Bajos (80,80) y Alemania
+                            (80.07).
+                        </p>
+                        <span class="info-box-icon material-symbols-outlined">sports_soccer</span>
+                    </div>
+                </div>
+                <p>
+                    En cuanto a los equipos, el juego cuenta con <strong>48 selecciones nacionales</strong>, además de
+                    un
+                    equipo especial llamado "EA Sports", cuyos jugadores tienen estadísticas máximas en todos los
+                    atributos.
+                    Cada selección tiene valores basados en su rendimiento real en aquella época, con <strong>Alemania
+                        como
+                        el equipo más dominante</strong>: todas sus estadísticas están al máximo, excepto "Running", que
+                    está solo un punto por debajo. Enfrentarlos con un equipo más débil supone un verdadero desafío.
+                </p>
+                <p>
+                    Si buscas un verdadero desafío, <strong>intenta ganar el Mundial con Qatar sin guardar ni cargar la
+                        partida</strong>. No apto si te frustras fácilmente, sobre todo por las fallas que mostrará
+                    nuestro
+                    arquero.
+                </p>
+                <h2>Aspectos técnicos</h2>
+                <p>
+                    La versión de <strong>Sega Mega Drive</strong> de FIFA International Soccer 93 se destacó por su
+                    <strong>innovadora perspectiva isométrica</strong>, un gran avance para los juegos de fútbol de la
+                    época. En lugar de utilizar una clásica vista lateral o superior, EA Sports implementó una
+                    simulación
+                    tridimensional que mejoraba la percepción de la cancha y ofrecía un mayor control de los jugadores.
+                </p>
+                <p>
+                    El hardware de esta consola, con su capacidad para mostrar hasta 64 colores simultáneos a partir de
+                    una
+                    paleta de 512 colores, permitió <strong>representar el césped con degradados de verdes</strong>,
+                    aportando una mayor sensación de profundidad. Para compensar las limitaciones gráficas de la
+                    consola, se
+                    empleó la técnica de <strong>dithering</strong>, que alternaba patrones de píxeles para simular más
+                    colores y texturas más detalladas.
+                </p>
+                <p>
+                    Uno de los grandes desafíos fue la implementación de una IA semiprogramada para equipos rivales, lo
+                    que
+                    <strong>permitía un juego más estructurado en comparación con otros títulos de fútbol de la
+                        época</strong>. Los jugadores rivales no simplemente perseguían el balón, sino que se
+                    posicionaban
+                    para cubrir espacios y generar oportunidades, un sistema primitivo que más tarde evolucionaría en
+                    juegos
+                    posteriores.
+                </p>
+                <p>
+                    Mega Drive usaba un <strong>procesador de sonido Yamaha YM2612</strong>, lo que significaba que los
+                    efectos de sonido estaban limitados en comparación con la versión de Super Nintendo. Para los
+                    cánticos
+                    de la multitud y el pitido del árbitro, <strong>se utilizaban muestras PCM comprimidas a 8
+                        bits</strong>, lo que generaba un audio algo distorsionado pero aceptable dentro de las
+                    limitaciones
+                    del sistema.
+                </p>
+                <p>
+                    El juego también tenía una <strong>banda sonora básica con efectos dinámicos</strong>, pero debido a
+                    lamemoria limitada, <strong>no incluía comentarios en vivo ni música durante el partido</strong>,
+                    algo
+                    que se implementaría en juegos posteriores de la franquicia.
+                </p>
+                <h2>Veredicto</h2>
+                <p>
+                    FIFA International Soccer 93 es un juego que <strong>marcó un antes y un después en la historia de
+                        los
+                        videojuegos de fútbol</strong>. A pesar de sus limitaciones técnicas, <strong>logró ofrecer una
+                        experiencia de juego profunda y entretenida</strong>, con una jugabilidad que se mantiene sólida
+                    incluso hoy en día.
+                </p>
+                <p>
+                    Si bien es cierto que los gráficos y el sonido han envejecido mal, la diversión y la emoción de
+                    ganar un
+                    partido en los últimos minutos siguen intactas. Es un juego que merece ser recordado y apreciado por
+                    su
+                    contribución al género, y por la diversión que sigue ofreciendo a los jugadores que buscan una
+                    experiencia retro auténtica.
+                </p>
+                <p>
+                    Realmente disfruté mucho este juego. Además de ser el punto de partida de toda una saga legendaria,
+                    lo
+                    cual ya es un mérito en sí mismo, <strong>FIFA International Soccer '93 fue innovador en muchos
+                        aspectos</strong>, lo que le suma aún más valor.
+                </p>
+                <p>
+                    En resumen, me pareció un título divertido, ideal para desafíos al jugar con equipos de menor nivel,
+                    perfecto para sesiones cortas de juego, y con mecánicas y características muy bien aprovechadas para
+                    la
+                    época. Por todo esto, considero que FIFA International Soccer '93 es, sin dudas, un juegazo.
+                </p>
+                <p>
+                    ¿Mis tres palabras para definir este juego? <strong>Desafiante, entretenido, innovador</strong>.
+                </p>
             </div>
-            <p>
-                En cuanto a los equipos, el juego cuenta con <strong>48 selecciones nacionales</strong>, además de un
-                equipo especial llamado "EA Sports", cuyos jugadores tienen estadísticas máximas en todos los atributos.
-                Cada selección tiene valores basados en su rendimiento real en aquella época, con <strong>Alemania como
-                    el equipo más dominante</strong>: todas sus estadísticas están al máximo, excepto "Running", que
-                está solo un punto por debajo. Enfrentarlos con un equipo más débil supone un verdadero desafío.
-            </p>
-            <p>
-                Si buscas un verdadero desafío, <strong>intenta ganar el Mundial con Qatar sin guardar ni cargar la
-                    partida</strong>. No apto si te frustras fácilmente, sobre todo por las fallas que mostrará nuestro
-                arquero.
-            </p>
-            <h2>Aspectos técnicos</h2>
-            <p>
-                La versión de <strong>Sega Mega Drive</strong> de FIFA International Soccer 93 se destacó por su
-                <strong>innovadora perspectiva isométrica</strong>, un gran avance para los juegos de fútbol de la
-                época. En lugar de utilizar una clásica vista lateral o superior, EA Sports implementó una simulación
-                tridimensional que mejoraba la percepción de la cancha y ofrecía un mayor control de los jugadores.
-            </p>
-            <p>
-                El hardware de esta consola, con su capacidad para mostrar hasta 64 colores simultáneos a partir de una
-                paleta de 512 colores, permitió <strong>representar el césped con degradados de verdes</strong>,
-                aportando una mayor sensación de profundidad. Para compensar las limitaciones gráficas de la consola, se
-                empleó la técnica de <strong>dithering</strong>, que alternaba patrones de píxeles para simular más
-                colores y texturas más detalladas.
-            </p>
-            <p>
-                Uno de los grandes desafíos fue la implementación de una IA semiprogramada para equipos rivales, lo que
-                <strong>permitía un juego más estructurado en comparación con otros títulos de fútbol de la
-                    época</strong>. Los jugadores rivales no simplemente perseguían el balón, sino que se posicionaban
-                para cubrir espacios y generar oportunidades, un sistema primitivo que más tarde evolucionaría en juegos
-                posteriores.
-            </p>
-            <p>
-                Mega Drive usaba un <strong>procesador de sonido Yamaha YM2612</strong>, lo que significaba que los
-                efectos de sonido estaban limitados en comparación con la versión de Super Nintendo. Para los cánticos
-                de la multitud y el pitido del árbitro, <strong>se utilizaban muestras PCM comprimidas a 8
-                    bits</strong>, lo que generaba un audio algo distorsionado pero aceptable dentro de las limitaciones
-                del sistema.
-            </p>
-            <p>
-                El juego también tenía una <strong>banda sonora básica con efectos dinámicos</strong>, pero debido a
-                lamemoria limitada, <strong>no incluía comentarios en vivo ni música durante el partido</strong>, algo
-                que se implementaría en juegos posteriores de la franquicia.
-            </p>
-            <h2>Veredicto</h2>
-            <p>
-                FIFA International Soccer 93 es un juego que <strong>marcó un antes y un después en la historia de los
-                    videojuegos de fútbol</strong>. A pesar de sus limitaciones técnicas, <strong>logró ofrecer una
-                    experiencia de juego profunda y entretenida</strong>, con una jugabilidad que se mantiene sólida
-                incluso hoy en día.
-            </p>
-            <p>
-                Si bien es cierto que los gráficos y el sonido han envejecido mal, la diversión y la emoción de ganar un
-                partido en los últimos minutos siguen intactas. Es un juego que merece ser recordado y apreciado por su
-                contribución al género, y por la diversión que sigue ofreciendo a los jugadores que buscan una
-                experiencia retro auténtica.
-            </p>
-            <p>
-                Realmente disfruté mucho este juego. Además de ser el punto de partida de toda una saga legendaria, lo
-                cual ya es un mérito en sí mismo, <strong>FIFA International Soccer '93 fue innovador en muchos
-                    aspectos</strong>, lo que le suma aún más valor.
-            </p>
-            <p>
-                En resumen, me pareció un título divertido, ideal para desafíos al jugar con equipos de menor nivel,
-                perfecto para sesiones cortas de juego, y con mecánicas y características muy bien aprovechadas para la
-                época. Por todo esto, considero que FIFA International Soccer '93 es, sin dudas, un juegazo.
-            </p>
-            <p>
-                ¿Mis tres palabras para definir este juego? <strong>Desafiante, entretenido, innovador</strong>.
-            </p>
         </div>
         <div class="rating">
             <h2 class="neon-card-title">Calificación</h2>
@@ -203,8 +290,8 @@
                     </svg>
                     <div class="half-star">
                         <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" fill="#FFD700"
-                                stroke="#FF4500" stroke-width="2" />
+                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24"
+                                fill="#FFD700" stroke="#FF4500" stroke-width="2" />
                         </svg>
                     </div>
                 </div>
@@ -228,8 +315,8 @@
                     </svg>
                     <div class="half-star">
                         <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" fill="#FFD700"
-                                stroke="#FF4500" stroke-width="2" />
+                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24"
+                                fill="#FFD700" stroke="#FF4500" stroke-width="2" />
                         </svg>
                     </div>
                 </div>
@@ -238,20 +325,20 @@
                     <h3 class="final-score-title">Calificación Final:</h3>
                     <div class="stars">
                         <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" fill="#FFD700"
-                                stroke="#FF4500" stroke-width="2" />
+                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24"
+                                fill="#FFD700" stroke="#FF4500" stroke-width="2" />
                         </svg>
                         <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" fill="#FFD700"
-                                stroke="#FF4500" stroke-width="2" />
+                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24"
+                                fill="#FFD700" stroke="#FF4500" stroke-width="2" />
                         </svg>
                         <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" fill="#FFD700"
-                                stroke="#FF4500" stroke-width="2" />
+                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24"
+                                fill="#FFD700" stroke="#FF4500" stroke-width="2" />
                         </svg>
                         <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24" fill="#FFD700"
-                                stroke="#FF4500" stroke-width="2" />
+                            <polygon points="32,4 39,24 60,24 42,36 48,56 32,44 16,56 22,36 4,24 25,24"
+                                fill="#FFD700" stroke="#FF4500" stroke-width="2" />
                         </svg>
                         <div class="half-star">
                             <svg class="star" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
@@ -273,8 +360,8 @@
                     <div class="carousel-item active">
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <figure>
-                                <img src="../assets/img/FIFA93/initial.png" class="d-block w-100" alt="Pantalla inicial"
-                                    data-bs-toggle="modal" data-bs-target="#imageModal">
+                                <img src="../assets/img/FIFA93/initial.png" class="d-block w-100"
+                                    alt="Pantalla inicial" data-bs-toggle="modal" data-bs-target="#imageModal">
                                 <figcaption>Pantalla inicial</figcaption>
                             </figure>
                         </div>
@@ -293,7 +380,8 @@
                         <div class="d-flex h-100 align-items-center justify-content-center">
                             <figure>
                                 <img src="../assets/img/FIFA93/referee.png" class="d-block w-100"
-                                    alt="Perseguido por el referee" data-bs-toggle="modal" data-bs-target="#imageModal">
+                                    alt="Perseguido por el referee" data-bs-toggle="modal"
+                                    data-bs-target="#imageModal">
                                 <figcaption>Perseguido por el referee</figcaption>
                             </figure>
                         </div>
@@ -337,23 +425,27 @@
                 <div class="curiosity">
                     <h3>1. Sin nombres reales:</h3>
                     <p>
-                        A diferencia de las versiones modernas, los jugadores no tenían nombres oficiales debido a la
+                        A diferencia de las versiones modernas, los jugadores no tenían nombres oficiales debido a
+                        la
                         falta
-                        de licencias. Inclusive se usaron nombres en referencia a desarrolladores que participaron de la
+                        de licencias. Inclusive se usaron nombres en referencia a desarrolladores que participaron
+                        de la
                         producción del juego.
                     </p>
                 </div>
                 <div class="curiosity">
                     <h3>2. Bugs divertidos:</h3>
                     <p>
-                        Si el jugador hacía una falta y debía recibir tarjeta, era posible escapar y que el árbitro te
+                        Si el jugador hacía una falta y debía recibir tarjeta, era posible escapar y que el árbitro
+                        te
                         persiguiera.
                     </p>
                 </div>
                 <div class="curiosity">
                     <h3>3. Goles con mayor probabilidad:</h3>
                     <p>
-                        Viniendo desde la esquina del área, es más posible marcar un gol que si se está mano a mano con
+                        Viniendo desde la esquina del área, es más posible marcar un gol que si se está mano a mano
+                        con
                         el
                         arquero. Esto obviamente también dependía de las puntuaciones del arquero.
                     </p>
@@ -361,9 +453,11 @@
                 <div class="curiosity">
                     <h3>4. Código de amistad:</h3>
                     <p>
-                        Con un poco de práctica, en cada saque de arquero con pelota en mano, es posible pararse frente
+                        Con un poco de práctica, en cada saque de arquero con pelota en mano, es posible pararse
+                        frente
                         a
-                        este, interceptar la pelota y marcar un gol instantáneo. Si juegas con alguien, mejor aclarar
+                        este, interceptar la pelota y marcar un gol instantáneo. Si juegas con alguien, mejor
+                        aclarar
                         que
                         ese tipo de goles no es válido.
                     </p>
@@ -379,14 +473,16 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="imageModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content" id="modalContent">
-                <div class="modal-body">
-                    <img id="modalImage" alt="Imagen ampliada">
+        <div class="modal fade" id="imageModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content" id="modalContent">
+                    <div class="modal-body">
+                        <img id="modalImage" alt="Imagen ampliada">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
@@ -395,22 +491,6 @@
             img.addEventListener('click', function () {
                 const modalImage = document.getElementById('modalImage');
                 modalImage.src = this.src;
-
-                // Obtiene el ancho y alto de la pantalla
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-
-                // Define los tamaños según el dispositivo
-                if (viewportWidth <= 768) {  // Modo móvil
-                    modalImage.style.maxWidth = '85vw';
-                    modalImage.style.maxHeight = '60vh';
-                } else {  // Pantallas más grandes
-                    modalImage.style.maxWidth = '80vw';
-                    modalImage.style.maxHeight = '80vh';
-                }
-
-                modalImage.style.width = 'auto';
-                modalImage.style.height = 'auto';
             });
         });
 
@@ -418,6 +498,7 @@
             document.activeElement.blur();
         });
     </script>
+    <script src="../assets/js/trivia.js"></script>
 </body>
 
 </html>
