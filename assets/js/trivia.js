@@ -5,10 +5,13 @@ const nextButton = document.getElementById("next-button");
 const questionTitle = document.querySelector("#question-screen h2");
 const optionContainer = document.querySelector(".option-container");
 const feedback = document.getElementById("feedback");
+const additionalData = document.getElementById("additional-data");
 
 // Función para cargar una pregunta según el índice actual
 function loadQuestion() {
     feedback.style.opacity = "0";
+    additionalData.opacity = "0";
+    additionalData.textContent = "";
     nextButton.style.display = "none";
     optionContainer.innerHTML = "";
     questionTitle.textContent = questions[questionIndex].question;
@@ -39,6 +42,7 @@ function handleAnswer(event) {
         score++; // Aumenta el puntaje si es correcta
         feedback.textContent = "CORRECTO :D";
         feedback.style.color = "var(--correct-color)";
+        additionalData.textContent = questions[questionIndex].additionalData;
         selectedOption.classList.add("correct");
         this.style.opacity = "1";
     } else {
@@ -55,7 +59,7 @@ function handleAnswer(event) {
         });
     }
 
-    // Actualizar contador de puntaje
+        // Actualizar contador de puntaje
     scoreText.textContent = `Puntaje: ${score}/${totalQuestions}`;
 
     // Actualizar barra de progreso
@@ -63,6 +67,7 @@ function handleAnswer(event) {
 
     // Mostrar mensaje de feedback
     feedback.style.opacity = "1";
+    additionalData.style.opacity = "1";
 
     // Mostrar el botón "CONTINUAR"
     nextButton.style.display = "block";
