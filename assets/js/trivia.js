@@ -1,48 +1,3 @@
-let score = 0;
-let questionIndex = 0;
-const questions = [
-    {
-        question: "1. ¿Cuál es el mejor jugador de FIFA International Soccer?",
-        options: [
-            { text: "a. Nombre A", correct: false },
-            { text: "b. Nombre B", correct: true },
-            { text: "c. Nombre C", correct: false }
-        ]
-    },
-    {
-        question: "2. ¿Cuál es la peor selección del juego?",
-        options: [
-            { text: "a. Equipo A", correct: false },
-            { text: "b. Equipo B", correct: false },
-            { text: "c. Equipo C", correct: true }
-        ]
-    },
-    {
-        question: "3. Pregunta 3?",
-        options: [
-            { text: "a. Nombre A", correct: false },
-            { text: "b. Nombre B", correct: true },
-            { text: "c. Nombre C", correct: false }
-        ]
-    },
-    {
-        question: "4. Pregunta 4?",
-        options: [
-            { text: "a. Nombre A", correct: false },
-            { text: "b. Nombre B", correct: true },
-            { text: "c. Nombre C", correct: false }
-        ]
-    },
-    {
-        question: "5. Pregunta 5?",
-        options: [
-            { text: "a. Nombre A", correct: false },
-            { text: "b. Nombre B", correct: false },
-            { text: "c. Nombre C", correct: true }
-        ]
-    }
-];
-
 const totalQuestions = questions.length;
 const scoreText = document.getElementById("score-text");
 const progressFill = document.getElementById("progress-fill");
@@ -253,7 +208,13 @@ confirmShare.addEventListener("click", function () {
     }
 
     let rateId = generateRateId(score);
-    shareUrl = `${window.location.origin}/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
+    let isDeployed = true;
+    shareUrl ="";
+    if(isDeployed){
+        shareUrl = `${window.location.origin}/cosmimomio/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
+    } else {
+        shareUrl = `${window.location.origin}/overlay.html?gameId=${gameId}&name=${encodeURIComponent(playerName)}&rateId=${rateId}`;
+    }
 
     // Expande el modal con una animación de opacidad
     
