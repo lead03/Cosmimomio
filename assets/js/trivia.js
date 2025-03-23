@@ -59,35 +59,21 @@ function handleAnswer(event) {
         });
     }
 
-        // Actualizar contador de puntaje
     scoreText.textContent = `Puntaje: ${score}/${totalQuestions}`;
-
-    // Actualizar barra de progreso
     progressFill.style.width = `${(score / totalQuestions) * 100}%`;
-
-    // Mostrar mensaje de feedback
     feedback.style.opacity = "1";
     additionalData.style.opacity = "1";
-
-    // Mostrar el botón "CONTINUAR"
     nextButton.style.display = "block";
 }
 
 function showFinalScreen() {
-    // Ocultar la pantalla de preguntas
     document.getElementById("question-screen").style.display = "none";
-
-    // Mostrar la pantalla final con transición
     const finalScreen = document.getElementById("final-screen");
     finalScreen.style.display = "flex";
     setTimeout(() => finalScreen.style.opacity = "1", 100);
-
     const finalScore = document.getElementById("final-score");
-
     let message = "";
-    let celebrationImg = document.getElementById("celebration"); // Obtener la imagen
-
-    // Definir la imagen según el puntaje obtenido
+    let celebrationImg = document.getElementById("celebration");
     switch (score) {
         case 5:
             message = "¡Increíble! Has acertado todas las preguntas";
